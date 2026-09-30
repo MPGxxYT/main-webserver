@@ -2,6 +2,8 @@ import './App.css'
 
 function App() {
 
+  const homelabIP = '100.95.204.65'
+
   return (
     <>
       <div className='mainCard'>
@@ -11,9 +13,10 @@ function App() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '150px'}}>
-          <a href='http://100.95.204.65:8081' target='_blank' rel='noreferrer' className='btn'>pgAdmin4</a>
-          <a href='https://100.95.204.65:8443' target='_blank' rel='noreferrer' className='btn'>CraftyController</a>
-          <a href='http://100.95.204.65:81' target='_blank' rel='noreferrer' className='btn'>Nginx Proxy</a>
+          <a href={`http://${homelabIP}:8081`} target='_blank' rel='noreferrer' className='btn'>pgAdmin4</a>
+          <a href={`https://${homelabIP}:8443`} target='_blank' rel='noreferrer' className='btn'>CraftyController</a>
+          <a href={`http://${homelabIP}:81`} target='_blank' rel='noreferrer' className='btn'>Nginx Proxy</a>
+          <a href={`https://${homelabIP}:631/`} target='_blank' rel='noreferrer' className='btn'>CUPS Prints</a>
           <a href='http://vault.mortality.app' target='_blank' rel='noreferrer' className='btn'>VaultWarden</a>
         </div>
       </div>
