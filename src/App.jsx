@@ -17,9 +17,6 @@ function App() {
           <a href='http://vault.mortality.app' target='_blank' rel='noreferrer' className='btn'>VaultWarden</a>
         </div>
       </div>
-    <footer>
-      Zachary C Carlson 2026
-    </footer>
     </>
   )
 
