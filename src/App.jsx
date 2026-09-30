@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <div className='mainCard' style={{width: '25%'}}>
+      <div className='mainCard'>
         <div style={{display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 26}}>
           <h1 style={{margin: 0}}>Access my dev apps</h1>
           <p style={{margin: 0}}>All require a <a className='tailscale' href='https://console.tailscale.com'>TailScale</a> connection</p>
@@ -17,6 +17,9 @@ function App() {
           <a href='http://vault.mortality.app' target='_blank' rel='noreferrer' className='btn'>VaultWarden</a>
         </div>
       </div>
+    <footer>
+      Zachary C Carlson 2026
+    </footer>
     </>
   )
 
