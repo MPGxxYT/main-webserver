@@ -1,54 +1,43 @@
 import './App.css'
-import { useState } from 'react'
+import PortalRow from './PortalRow'
+import PortalButton from './PortalButton'
 
 function App() {
-  let [sideBarToggleValue, sideBarToggleSetter] = useState(false)
-
-  return (
-    <>
-      <div className='sidebar' style={{position: 'fixed', top: 0, left: 0, zIndex: 20}}>
-        <div style={{display: 'flex', flexDirection: 'row', gap: 4, alignItems: 'center'}}>
-          <button onClick={() => {sideBarToggleSetter(!sideBarToggleValue)}}>
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-          </button>
-          <h3 style={{margin: 0}}>Dev Apps</h3>
-        </div>
-        <DevAppsCard open={sideBarToggleValue} />
-      </div>
-      <div className='hero' style={{margin: 'auto', textAlign: 'center'}}>
-        <h1 style={{marginBottom: 4, fontSize: 60}}>Mortality.app</h1>
-        <p style={{margin: 0}}>The home for all my projects and services.</p>
-      </div>
-    </>
-  )
-
-}
-
-function DevAppsCard({ open }) {
-
   const homelabIP = '100.95.204.65'
-  // https://console.tailscale.com w/ tailscale icon
+  const placeholderIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#000000"><path d="M5,21q-0.83,0-1.41-0.59T3,19V5Q3,4.17 3.59,3.59T5,3H19q0.83,0 1.41,0.59T21,5V19q0,0.82-0.59,1.41T19,21H5Zm0-2H19V5H5V19Zm1-2H18l-3.75-5l-3,4L9,13L6,17ZM5,19V5V19Z"/></svg>
+  var tools = [
+    <PortalButton icon='https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/pgadmin.svg' 
+        title='pgAdmin4' body='Postgres Admin Manager' link={`http://${homelabIP}:8081`} restricted={true}/>,
+    <PortalButton icon='https://cdn.jsdelivr.net/gh/selfhst/icons/svg/crafty-controller.svg' 
+        title='Crafty Controller' body='Minecraft Server Manager' link={`https://${homelabIP}:8443`} restricted={true}/>,
+    <PortalButton icon='https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/nginx-proxy-manager.svg' 
+        title='Nginx Proxy' body='Proxy & Routing Manager' link={`http://${homelabIP}:81`} restricted={true}/>,
+    <PortalButton icon='https://cdn.jsdelivr.net/gh/selfhst/icons/svg/cups.svg' 
+        title='CUPS Prints' body='Print Server' link={`https://${homelabIP}:631`} restricted={true}/>
+  ]
 
-  var translateXVal = 0;
+  var services = [
+    <PortalButton icon='https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vaultwarden.svg' 
+        title='VaultWarden' body='Password & Docs' link='http://vault.mortality.app' restricted={true}/>]
 
-  if (!open) {
-    translateXVal = -100
-  }
+  var projects = [
+    <PortalButton icon={placeholderIcon} 
+        title='Fizzwick' body='Mocktail & Drinks Webapp' link='https://fizzwick.mortality.app/'/>]
 
   return (
     <>
-      <div className='devAppsCard' style={{transform: `translateX(${translateXVal}%)`, transition: 'transform 0.25s ease'}}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8,  width: '100%'}}>
-          <a href={`http://${homelabIP}:8081`} target='_blank' rel='noreferrer' className='btn'>pgAdmin4</a>
-          <a href={`https://${homelabIP}:8443`} target='_blank' rel='noreferrer' className='btn'>CraftyController</a>
-          <a href={`http://${homelabIP}:81`} target='_blank' rel='noreferrer' className='btn'>Nginx Proxy</a>
-          <a href={`https://${homelabIP}:631/`} target='_blank' rel='noreferrer' className='btn'>CUPS Prints</a>
-          <a href='http://vault.mortality.app' target='_blank' rel='noreferrer' className='btn'>VaultWarden</a>
-        </div>
+      <div className='hero'>
+        <h1>Mortality.app</h1>
+        <p>Portal for all my projects, pages and services.</p>
       </div>
+      <PortalRow portals={tools} title="Tools" />
+      <PortalRow portals={services} title="Services" />
+      <PortalRow portals={projects} title="Projects" />
     </>
   )
 
 }
+
+
 
 export default App
